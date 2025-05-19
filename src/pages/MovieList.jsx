@@ -25,8 +25,8 @@ const MovieList = () => {
   }, [sortBy])
 
   return (
-    <div className="max-w-5xl mx-auto mt-10 px-4">
-      <h2 className="text-3xl font-semibold text-center text-blue-600 mb-6">
+    <div className="max-w-5xl mx-auto mt-5 md:mt-10 px-4">
+      <h2 className="text-xl md:text-3xl font-semibold text-center text-blue-600 mb-3 md:mb-6">
         Movie List
       </h2>
 
@@ -36,14 +36,14 @@ const MovieList = () => {
 
       {/* Sort Dropdown */}
       <div className="mb-6">
-        <label htmlFor="sortBy" className="block text-sm font-medium mb-1">
+        <label htmlFor="sortBy" className="block md:text-sm text-[12px] font-medium mb-2">
           Sort By
         </label>
         <select
           id="sortBy"
           value={sortBy}
           onChange={(e) => setSortBy(e.target.value)}
-          className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full md:text-[16px] text-[14px] border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
         >
           <option value="">None</option>
           <option value="rating">Rating</option>
@@ -66,12 +66,12 @@ const MovieList = () => {
               className="w-24 h-24 object-cover rounded-md shadow"
             />
             <div className="flex-1">
-              <h3 className="text-lg font-semibold">{movie.title}</h3>
-              <p className="text-sm text-gray-600 mb-2 line-clamp-2">
+              <h3 className="text-[15px] md:text-lg font-semibold line-clamp-1">{movie.title}</h3>
+              <p className="md:text-sm text-[12px] text-gray-600 mb-2 line-clamp-2">
                 {movie.description}
               </p>
               <Link to={`/movie/${movie._id}`}>
-                <button className="bg-blue-600 cursor-pointer text-white text-sm px-4 py-2 rounded-md hover:bg-blue-700 shadow">
+                <button className="bg-blue-600 md:px-4 md:py-2  cursor-pointer text-white text-sm px-2 py-1 rounded-md hover:bg-blue-700 shadow">
                   View Details
                 </button>
               </Link>

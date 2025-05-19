@@ -38,21 +38,21 @@ const MovieDetail = () => {
           <img
             src={movie.image[1]}
             alt={movie.title}
-            className="w-full h-auto rounded-lg shadow-md"
+            className="md:w-full md:h-auto w-full h-[300px] object-contain md:rounded-lg md:shadow-md"
           />
         </div>
 
         {/* Movie Details */}
         <div className="md:col-span-2 space-y-4">
-          <h1 className="text-4xl font-bold">{movie.title}</h1>
-          <p className="text-lg text-gray-600">
+          <h1 className="md:text-2xl text-[16px] font-bold">{movie.title}</h1>
+          <p className="md:text-lg text-[14px] text-gray-600">
             <strong>Directed by:</strong> {movie.director}
           </p>
 
           {/* Genre */}
           <div className="flex items-center gap-x-3">
-            <h2 className="text-xl font-semibold">Genres:</h2>
-            <div className="flex flex-wrap justify-center gap-2 mt-1">
+            <h2 className="md:text-xl text-[14px] font-semibold">Genres:</h2>
+            <div className="flex flex-wrap justify-center gap-2">
               {movie.genre.map((genre, index) => (
                 <span
                   key={index}
@@ -66,14 +66,14 @@ const MovieDetail = () => {
 
           {/* Cast */}
           <div className="flex items-center gap-x-3">
-            <h2 className="text-xl font-semibold">Cast:</h2>
-            <p>{movie.cast.join(", ")}</p>
+            <h2 className="md:text-xl text-[14px] font-semibold">Cast:</h2>
+            <p className="md:text-lg text-[14px]">{movie.cast.join(", ")}</p>
           </div>
 
           {/* Description */}
           <div className="flex items-baseline gap-x-3">
-            <h2 className="text-xl font-semibold">Description:</h2>
-            <p>{movie.description}</p>
+            <h2 className="md:text-xl text-[14px] font-semibold">Description:</h2>
+            <p className="md:text-lg text-[14px]">{movie.description}</p>
           </div>
 
           {/* Rating and Duration */}
@@ -88,8 +88,8 @@ const MovieDetail = () => {
 
           {/* Release Date */}
           <div className="flex items-center">
-            <h2 className="text-xl font-semibold">Release Date:</h2>
-            <p>{new Date(movie.releaseDate).toLocaleDateString()}</p>
+            <h2 className="md:text-xl text-[14px] font-semibold">Release Date:</h2>
+            <p className="ml-1 md:text-lg text-[14px]">{new Date(movie.releaseDate).toLocaleDateString()}</p>
           </div>
 
           {/* Trailer */}

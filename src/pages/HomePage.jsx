@@ -30,7 +30,7 @@ const HomePage = () => {
   }
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto py-8 px-4">
       <h2 className="text-3xl font-semibold text-center mb-6">Top Movies</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {movies.map(movie => (
@@ -41,7 +41,7 @@ const HomePage = () => {
             <img
               src={movie.image[0]}
               alt={movie.title}
-              className="h-52 w-full object-cover"
+              className="h-[300px] w-full object-cover"
             />
             <div className="p-4 flex-1 flex flex-col justify-between">
               <div>
