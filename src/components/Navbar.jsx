@@ -15,6 +15,7 @@ const Navbar = () => {
     if (searchQuery.trim()) {
       navigate(`/search?q=${searchQuery}`);
       setMobileMenuOpen(false); // Close mobile menu after search
+      setSearchQuery("");
     }
   };
 
@@ -31,14 +32,16 @@ const Navbar = () => {
     <nav className="bg-blue-600 text-white sticky top-0 z-50 shadow-md">
       <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
         {/* Logo & Name */}
-        <div className="flex items-center space-x-2">
-          <img src={logo} alt="Logo" className="w-[60px] h-[30px] md:w-[80px] md:h-[40px] object-contain" />
-          <h1
-            onClick={() => navigate("/")}
-            className="text-xl font-semibold cursor-pointer"
-          >
-            MovieApp
-          </h1>
+        <div
+          className="flex items-center space-x-2 cursor-pointer"
+          onClick={() => navigate("/")}
+        >
+          <img
+            src={logo}
+            alt="Logo"
+            className="w-[60px] h-[30px] md:w-[80px] md:h-[40px] object-contain"
+          />
+          <h1 className="text-xl font-semibold">MovieApp</h1>
         </div>
 
         {/* Hamburger Icon for mobile */}
@@ -64,9 +67,15 @@ const Navbar = () => {
               type="text"
               value={searchQuery}
               onChange={handleSearchChange}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  handleSearchSubmit();
+                }
+              }}
               placeholder="Search Movies..."
               className="bg-white text-black rounded px-3 py-1 w-48 outline-none"
             />
+
             <button
               onClick={handleSearchSubmit}
               className="absolute right-1 top-1/2 -translate-y-1/2 text-blue-600 cursor-pointer"
@@ -117,16 +126,29 @@ const Navbar = () => {
       {/* Mobile Menu */}
       {mobileMenuOpen && (
         <div className="md:hidden p-4 flex flex-col space-y-3 bg-blue-700 text-white">
-          <button onClick={() => navigate("/movies")}>Top Movies</button>
+          <button
+            onClick={() => {
+              navigate("/movies");
+              setMobileMenuOpen(false);
+            }}
+          >
+            Top Movies
+          </button>
 
           <div className="relative">
             <input
               type="text"
               value={searchQuery}
               onChange={handleSearchChange}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  handleSearchSubmit();
+                }
+              }}
               placeholder="Search Movies..."
               className="bg-white text-black rounded px-3 py-1 w-full outline-none"
             />
+
             <button
               onClick={handleSearchSubmit}
               className="absolute right-2 top-1/2 -translate-y-1/2 text-blue-600 cursor-pointer"
@@ -136,19 +158,31 @@ const Navbar = () => {
           </div>
 
           {isLoggedIn ? (
-            <button onClick={handleLogout} className="text-left hover:underline">
+            <button
+              onClick={() => {
+                handleLogout();
+                setMobileMenuOpen(false);
+              }}
+              className="text-left hover:underline"
+            >
               Logout
             </button>
           ) : (
             <>
               <button
-                onClick={() => navigate("/login")}
+                onClick={() => {
+                  navigate("/login");
+                  setMobileMenuOpen(false);
+                }}
                 className="text-left hover:underline"
               >
                 Login
               </button>
               <button
-                onClick={() => navigate("/register")}
+                onClick={() => {
+                  navigate("/register");
+                  setMobileMenuOpen(false);
+                }}
                 className="text-left hover:underline"
               >
                 Register

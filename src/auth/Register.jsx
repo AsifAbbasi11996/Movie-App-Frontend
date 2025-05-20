@@ -101,7 +101,7 @@ const Register = () => {
             onClick={() => navigate('/login')}
             className="w-full border cursor-pointer border-gray-300 text-gray-700 py-2 px-4 rounded hover:bg-gray-100 transition"
           >
-            Already have an account? Login
+            Already have an account? <span className="underline text-blue-700">Login</span>
           </button>
         </form>
       </div>

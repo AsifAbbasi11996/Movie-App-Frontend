@@ -32,7 +32,7 @@ const Search = () => {
 
   return (
     <div className="max-w-7xl mx-auto mt-10 px-4">
-      <h2 className="text-3xl font-semibold text-center mb-6">
+      <h2 className="lg:text-2xl md:text-xl text-[16px] font-semibold text-center mb-3 md:mb-6">
         Search Results for &quot;{query}&quot;
       </h2>
 
@@ -52,24 +52,22 @@ const Search = () => {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {movies.map((movie) => (
-          <div key={movie._id} className="bg-white shadow-md rounded-lg overflow-hidden">
+          <div key={movie._id} className="shadow-md rounded-lg border border-[#dadada] overflow-hidden p-3">
             <img
               src={movie.image?.[0] ? movie.image[0] : '/fallback.jpg'}
               alt={movie.title}
-              className="w-full h-48 object-cover"
+              className="w-full h-48 object-cover rounded-md"
             />
             <div className="p-4">
-              <h3 className="text-lg font-semibold truncate">{movie.title}</h3>
-              <p className="text-sm text-gray-600 mt-1 truncate">
-                {movie.description
-                  ? `${movie.description.slice(0, 100)}...`
-                  : 'No description available'}
+              <h3 className="md:text-lg text-[15px] font-semibold truncate">{movie.title}</h3>
+              <p className="text-sm text-gray-600 mt-1">
+                {movie.description}
               </p>
             </div>
             <div className="px-4 pb-4">
               <Link
                 to={`/movie/${movie._id}`}
-                className="block text-center w-full bg-purple-600 text-white py-2 px-4 rounded hover:bg-purple-700 transition"
+                className="block md:text-[16px] text-sm text-center w-full bg-purple-600 text-white py-2 px-4 rounded hover:bg-purple-700 transition"
               >
                 View Details
               </Link>

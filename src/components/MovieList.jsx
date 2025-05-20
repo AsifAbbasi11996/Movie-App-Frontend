@@ -1,28 +1,32 @@
-import React, { useEffect, useState } from "react"
-import axios from "axios"
-import { Link } from "react-router-dom"
-import { API_URL } from "../utils/baseUrl"
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { Link } from "react-router-dom";
+import { API_URL } from "../utils/baseUrl";
 
 const MovieList = () => {
-  const [movies, setMovies] = useState([])
-  const [error, setError] = useState("")
-  const [sortBy, setSortBy] = useState("")
+  const [movies, setMovies] = useState([]);
+  const [error, setError] = useState("");
+  const [sortBy, setSortBy] = useState("");
 
   useEffect(() => {
     const fetchMovies = async () => {
       try {
         const url = sortBy
           ? `${API_URL}/movies/sorted?sortBy=${sortBy}`
-          : `${API_URL}/movies`
-        const response = await axios.get(url)
-        setMovies(response.data)
+          : `${API_URL}/movies`;
+        const response = await axios.get(url);
+        setMovies(response.data);
       } catch (err) {
-        setError("Failed to fetch movies")
-        console.error(err)
+        setError("Failed to fetch movies");
+        console.error(err);
       }
-    }
-    fetchMovies()
-  }, [sortBy])
+    };
+    fetchMovies();
+  }, [sortBy]);
+
+  useEffect(() => {
+    window.scrollTo(0, 0); // Scroll to top
+  }, []);
 
   return (
     <div className="max-w-5xl mx-auto mt-5 md:mt-10 px-4">
@@ -36,7 +40,10 @@ const MovieList = () => {
 
       {/* Sort Dropdown */}
       <div className="mb-6">
-        <label htmlFor="sortBy" className="block md:text-sm text-[12px] font-medium mb-2">
+        <label
+          htmlFor="sortBy"
+          className="block md:text-sm text-[12px] font-medium mb-2"
+        >
           Sort By
         </label>
         <select
@@ -66,7 +73,9 @@ const MovieList = () => {
               className="w-24 h-24 object-cover rounded-md shadow"
             />
             <div className="flex-1">
-              <h3 className="text-[15px] md:text-lg font-semibold line-clamp-1">{movie.title}</h3>
+              <h3 className="text-[15px] md:text-lg font-semibold line-clamp-1">
+                {movie.title}
+              </h3>
               <p className="md:text-sm text-[12px] text-gray-600 mb-2 line-clamp-2">
                 {movie.description}
               </p>
@@ -80,7 +89,7 @@ const MovieList = () => {
         ))}
       </ul>
     </div>
-  )
-}
+  );
+};
 
-export default MovieList
+export default MovieList;

@@ -22,6 +22,10 @@ const MovieDetail = () => {
     fetchMovieDetail();
   }, [movieId]);
 
+  useEffect(() => {
+    window.scrollTo(0, 0); // Scroll to top
+  }, []);
+
   if (loading) {
     return (
       <div className="flex justify-center items-center h-screen">
@@ -38,20 +42,22 @@ const MovieDetail = () => {
           <img
             src={movie.image[1]}
             alt={movie.title}
-            className="md:w-full md:h-auto w-full h-[300px] object-contain md:rounded-lg md:shadow-md"
+            className="md:w-full md:h-[450px] w-full h-[300px] object-contain md:rounded-lg"
           />
         </div>
 
         {/* Movie Details */}
-        <div className="md:col-span-2 space-y-4">
-          <h1 className="md:text-2xl text-[16px] font-bold">{movie.title}</h1>
+        <div className="md:col-span-2 flex flex-col gap-y-2">
+          <h1 className="md:text-2xl text-lg font-bold">{movie.title}</h1>
           <p className="md:text-lg text-[14px] text-gray-600">
-            <strong>Directed by:</strong> {movie.director}
+            <strong>Directed by :</strong> {movie.director}
           </p>
 
           {/* Genre */}
           <div className="flex items-center gap-x-3">
-            <h2 className="md:text-xl text-[14px] font-semibold">Genres:</h2>
+            <h2 className="md:text-xl text-[14px]">
+              <strong>Genres :</strong>
+            </h2>
             <div className="flex flex-wrap justify-center gap-2">
               {movie.genre.map((genre, index) => (
                 <span
@@ -65,31 +71,39 @@ const MovieDetail = () => {
           </div>
 
           {/* Cast */}
-          <div className="flex items-center gap-x-3">
-            <h2 className="md:text-xl text-[14px] font-semibold">Cast:</h2>
+          <div className="flex items-baseline gap-x-3">
+            <p className="md:text-xl text-[14px]">
+              <strong>Cast:</strong>
+            </p>
             <p className="md:text-lg text-[14px]">{movie.cast.join(", ")}</p>
           </div>
 
           {/* Description */}
           <div className="flex items-baseline gap-x-3">
-            <h2 className="md:text-xl text-[14px] font-semibold">Description:</h2>
+            <p className="md:text-xl text-[14px]">
+              <strong>Description:</strong>
+            </p>
             <p className="md:text-lg text-[14px]">{movie.description}</p>
           </div>
 
           {/* Rating and Duration */}
           <div className="flex items-center gap-4">
-            <p>
-              <strong>Rating:</strong> {movie.rating}
+            <p className="md:text-xl text-[14px]">
+              <strong>Rating :</strong> {movie.rating} ⭐
             </p>
-            <p>
-              <strong>Duration:</strong> {movie.duration} min
+            <p className="md:text-xl text-[14px]">
+              <strong>Duration :</strong> {movie.duration} min
             </p>
           </div>
 
           {/* Release Date */}
           <div className="flex items-center">
-            <h2 className="md:text-xl text-[14px] font-semibold">Release Date:</h2>
-            <p className="ml-1 md:text-lg text-[14px]">{new Date(movie.releaseDate).toLocaleDateString()}</p>
+            <h2 className="md:text-xl text-[14px]">
+              <strong>Release Date :</strong>
+            </h2>
+            <p className="ml-1 md:text-lg text-[14px]">
+              {new Date(movie.releaseDate).toLocaleDateString()}
+            </p>
           </div>
 
           {/* Trailer */}
@@ -99,9 +113,9 @@ const MovieDetail = () => {
                 href={movie.trailerLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md"
+                className="md:text-[16px] text-sm bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md"
               >
-                Watch Trailer
+                ▶️ Watch Trailer
               </a>
             </div>
           )}
